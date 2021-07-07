@@ -27,8 +27,8 @@ export const Navbar = () => {
 
    
     <div className=" container d-flex justify-content-center align-content-center mb-1 ">
-        {/* <img src="https://lh3.googleusercontent.com/proxy/5Sjh_fycEKKEcVK5GT4Q2bc5yxY-TXtTACQbzObfPhGx0KPWZwYkQAihfzs_dbxHD9dEsGIy5uc9X9t-0fat723XTzP0td4LB2KUSh0hvL0d7qh-" alt="" width="100px" /> */}
-      <h3 className="text-muted">TimePice</h3>
+      <img src="https://seeklogo.com/images/W/Watch_Your_Watches-logo-B511B54337-seeklogo.com.png" alt="" height="30px" />
+      <h3 className="text-muted mx-3">TimePice</h3>
     </div>
        
        
@@ -83,7 +83,7 @@ export const Navbar = () => {
       <li className="nav-item me-3 me-lg-1">
         <span className="nav-link d-sm-flex align-items-sm-center  text-white mx-3" href="/#">
           <img
-            src="https://mdbootstrap.com/img/new/avatars/1.jpg"
+            // src="https://mdbootstrap.com/img/new/avatars/1.jpg"
             className="rounded-circle"
             height="22"
             alt=""

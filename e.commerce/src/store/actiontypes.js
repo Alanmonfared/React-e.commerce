@@ -13,11 +13,10 @@ const actiontypes = () => {
             delete: ' DELETE_FROM_CART',
             clear: 'CLEAR_CART'
         },
-        auth: {
-            loading: 'AUTH_LOAIDNG',
-            success: 'AUTH_SUCCESS',
-            failure: 'AUTH_FAILURE',
-            logout:  'AUTH_LOGOUT'
+        user: {
+            register: 'REGISTER_USER',
+            login: 'LOGIN_USER',
+         
         }
     }
     

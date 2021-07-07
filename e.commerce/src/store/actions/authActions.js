@@ -1,19 +1,34 @@
 import React from 'react';
 import axios from 'axios'
 import actiontypes from '../actiontypes';
-import jwt from 'jsonwebtoken'
+// import { useHistory } from 'react-router-dom'
+// import jwt from 'jsonwebtoken'
 
-export  const register = (user) => {
-   return dispatch => {
-       dispatch(loading())
-       axios.post('http://localhost:9999/register', user)
+export  const register = (_user,history ) => {
+   
+   return async dispatch => {
+      const res =  await axios.post('http://localhost:9999/api/users/register', _user)
+
+      console.log(res)
+      dispatch(login(_user,history))
+      
+      
+   }
+}
+
+export  const login = (_user, history) => {
+   return async  dispatch => {
+   const res  = axios.post('http://localhost:9999/api/users/login', _user)
        .then(res => {
-           console.log(res.data);
-           dispatch(_success(res.data.accessToken))
-            
+
+        dispatch(setProfile(res.data.user))
+        console.log(res.data.user)
+        
        })
+    //    history.push('/products')
+
        .catch(err => {
-           dispatch(err.message);
+         //   dispatch(err.message);
            console.log(err)
        })
    }
@@ -21,36 +36,63 @@ export  const register = (user) => {
 
 
 
-export const _success = (token) => {
-      return dispatch => {
-         const id = jwt.decode(token).sub;
-         axios.get(`http://localhost:9999/users${id}`)
-         .then(res => {
-            dispatch(success({token, admin: res.data.admin}))
-         })
-      }
-} 
+export const addOrder = (order,  profile) => {
+   console.log(order);
+   
+   return async dispatch => {
+       const res = await axios.patch(`http://localhost:9999/api/users/addorder/${profile.email}`,order)
+       console.log(res)
+       
+    
+    //   {headers: { Authorization: "Bearer " + profile.token }}
 
+        //   .then(res => {
+        //       console.log(res)
 
-export const success = ({token, admin}) => {
-return {
-  type: actiontypes().auth.success,
-   payload: {token, admin}
-  }
-
-}
-
-
-export const failure = error => {
-   return {
-      type: actiontypes().auth.failure,
-      payload: error
+        //   }) 
+         //   {headers: { Authorization: "Bearer " + user.token }}
+       
+       
+    //    dispatch(updateProfileUser(_user))
+    //    console.log(order);
    }
 }
 
 
-export const loading = () => {
-   return {
-      type: actiontypes().auth.loading,
-   }
+// export const updateProfileUser = _user => {
+//    return async dispatch => {
+//        const res = await axios.get( `http://localhost:9999/api/users/${_user._id}`,
+          
+//            {
+//                headers: {  Authorization: "Bearer " + _user.token}
+                 
+               
+//            }
+//        )
+//        dispatch(setProfile(res.data.user))
+//        console.log(res.data.user);
+//    }
+// }
+
+
+export const setProfile = _user => {
+  
+  return {
+    type: actiontypes().user.login,
+    payload: _user,
+ 
+ 
 }
+}
+
+
+
+
+
+
+
+
+
+
+
+

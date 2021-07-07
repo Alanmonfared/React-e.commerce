@@ -1,24 +1,48 @@
 import React from 'react'
-// import { NavLink,Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {useState} from 'react'
 import { useDispatch} from 'react-redux'
-import { register  } from '../../store/actions/authActions'
+import { register, login  } from '../../store/actions/authActions'
+
+
 
 
 
 const Login = () => {
 
+
+
+   const logout = () => {
+       
+        this.setState({ 
+          sessionToken: '', 
+        });
+        localStorage.clear();
+      }
+
+
+
         const dispatch = useDispatch();
+        let history = useHistory();
 
         const sub = (e) => {
-            e.preventdefault()
+            e.preventDefault()
             dispatch(register({
                firstName,
                lastName,
                email,
                password,
-               admin: true     
+               
 
+            }))
+        }
+
+
+        const handelSub = (e) => {
+            e.preventDefault()
+            dispatch(login({
+                email,
+                password
             }))
         }
 
@@ -64,27 +88,22 @@ return (
             role="tabpanel"
             aria-labelledby="tab-login"
         >
-            <form>
-          
-
+            <form onSubmit={handelSub}>
+       
             
             <div className=" mb-4">
-                <input type="email" id="loginName" className="form-control" />
+                <input type="email" id="loginName" className="form-control"  value={email} onChange={e => setEmail(e.target.value)} />
                 <label className="form-label" htmlFor="loginName">Email</label>
             </div>
 
             
             <div className=" mb-4">
-                <input type="password" id="loginPassword" className="form-control" />
+                <input type="password" id="loginPassword" className="form-control" value={password} onChange={e => setPassword(e.target.value)}  />
                 <label className="form-label" htmlFor="loginPassword">Password</label>
             </div>
-
-            
-           
-
-            
-            <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
-
+                        
+            <button type="submit" className="btn btn-primary btn-block mb-4" >Sign in</button>
+                    {/* onClick={()=> history.push("/products")} */}
             
             <div className="text-center">
                 <p>Not a member? <a href="/#">Register</a></p>
@@ -126,7 +145,8 @@ return (
 
            
 
-          <button  className="btn btn-primary btn-block mb-3">Sign in</button>
+          <button  className="btn btn-primary btn-block mb-3"  >Sign up</button>
+          {/* onClick={()=> history.push("/products")} */}
             </form>
         </div>
     </div>

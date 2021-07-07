@@ -1,6 +1,9 @@
 import React from 'react'
 import  { useSelector} from 'react-redux'
+// import userAddOrder from '../../views/userAddOrder'
 import ShopCartInner from './ShopCartInner'
+import {  Link } from 'react-router-dom';
+
 
 const ShopCart = () => {
 
@@ -11,7 +14,7 @@ const ShopCart = () => {
    
    const empty = (
        <div className="p-2 d-flex justify-conten-center align-items-center">
-           din cart är tomt
+           {/* din cart är tomt */}
        </div>
    )
    
@@ -34,11 +37,13 @@ const ShopCart = () => {
         <div className="p-2 d-flex justify-content-between align-items-center">
             <div>
                 <div>
-                    Total Amount: <span> {totalCartAmount} </span>
+                    Total Amount: <span> {totalCartAmount} SEK </span>
                 </div>
                 <small className="text-muted">inkl tax</small>
             </div>
-            <button className="btn btn-success ">Checkout</button>
+            {/* <button className="btn btn-success" >Checkout</button> */}
+            <Link className="btn btn-sm btn-outline-success mb-3 mt-auto hover shadow-1 "  to={'/userAddOrder'}>Checkout</Link>
+
         </div>
 
             

@@ -41,19 +41,7 @@ const cartReducer = (state = initState, action) => {
                     state.totalCartQuantity = getTotalQunatity(state.shoppingCart)
                     return state;
                    
-            // if(item < 0) {
-            //     return {
-            //         ...state,
-            //         shoppingCart: [...state.shoppingCart, {...action.payload, quantity: 1}]
-            //     }
-            // } else {
-            //     state.shoppingCart[item].quantity += 1
-            //     return {
-            //         ...state,
-                    
-            //     }
-            // }
-           
+            
 
 
         default:

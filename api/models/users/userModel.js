@@ -6,6 +6,8 @@ const auth = require('../../authentication/auth')
 exports.registerUser = (req, res) => {
     
   User.exists({ email: req.body.email }, (err, result) => {
+
+    // console.log( req.body.email )
       if(err) {
           return res.status(400).json({
               statusCode: 400,
@@ -39,7 +41,7 @@ exports.registerUser = (req, res) => {
         const newUser = new User ({
           firstName:        req.body.firstName,
           lastName:         req.body.lastName,
-          // order:            req.body.order,
+         
           email:            req.body.email,
           passwordHash:     hash
         })
@@ -49,7 +51,7 @@ exports.registerUser = (req, res) => {
              return res.status(201).json({
                  statusCode: 201,
                  status: true,
-                 message: 'User was created successfully'
+                 message: 'User was created successfully',
              })
          })
          .catch(err => {
@@ -95,7 +97,7 @@ exports.loginUser = (req, res) => {
                     status: true,
                     message: 'Authentication was successfully',
                     token:auth.generateToken(user),
-                    user: user
+                    user:user
                  })
              } else {
                  res.status(401).json({
@@ -109,7 +111,32 @@ exports.loginUser = (req, res) => {
 }
 
 exports.addOrder = (req, res) => {
-      User.exists({ email: req.params.id }, (err, result) => {
+  // det här kommer från frontend
+    // console.log(req.params.id)    
+    // console.log(req.body.shoppingCart)
+
+  //   let exists = User.exists({ email: req.params.id}) 
+
+  // User.exists({ email: req.params.id}) 
+  // console.log(exists)
+  // if(exists) {
+  //   User.updateOne(
+  //     { email: req.params.id},
+  //     { $push: { order: req.body } }
+  //   )
+    
+  //   .then(() => {
+
+  //   } )
+    
+    
+  //   console.log(res)
+  // }
+
+  
+  User.exists({ email: req.params.id }, (err, result) => {
+    // console.log(req.body)
+        
         if (err) {
           return res.status(400).json({
             statusCode: 400,
@@ -122,8 +149,11 @@ exports.addOrder = (req, res) => {
           User.updateOne(
             { email: req.params.id },
             { $push: { order: req.body } }
+          
+
           )
-            .then(() => {
+          // console.log(req.body.order)
+          .then(() => {
               
               res.status(200).json({
                 statusCode: 200,
@@ -140,6 +170,7 @@ exports.addOrder = (req, res) => {
             })
         }
       })
+      
     }
 
 

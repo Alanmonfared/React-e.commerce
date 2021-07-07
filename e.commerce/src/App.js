@@ -7,6 +7,8 @@ import Products from './views/Products'
 import ProductInfo from './views/ProductInfo';
 import CartShop from './views/CartShop';
 import LoginUser from './views/LoginUser';
+import UserAddOrder from './views/UserAddOrder';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
             <Route exact path="/products/:id/CartShop" component={CartShop} />
             <Route exact path="/loginuser" component={LoginUser} />
             <Route exact path="/about"  component={About}/>
+            <Route exact path="/userAddOrder"  component={UserAddOrder}/>
+
+            <ProtectedRoute exact path="/products"component={ProtectedRoute}/>
         </Switch>
 
 

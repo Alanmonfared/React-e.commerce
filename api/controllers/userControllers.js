@@ -5,9 +5,10 @@ const auth = require("../authentication/auth");
 router.post('/register', userModel.registerUser );
 
 router.post('/login', userModel.loginUser);
+router.get('/:id', userModel.loginUser);
 
 
-router.patch('/addorder/:id', auth.verifyToken, userModel.addOrder);
+router.patch('/addorder/:id', userModel.addOrder);
 
 
 module.exports = router;
