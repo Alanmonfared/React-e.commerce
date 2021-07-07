@@ -1,14 +1,26 @@
 import {  NavLink,Link } from 'react-router-dom';
 import   ShopCart from '../shopCart/ShopCart';
-import {  useSelector } from 'react-redux';
+import {  useSelector,useDispatch } from 'react-redux';
+import { logoutUser } from '../../store/actions/authActions';
+import { clearCart } from '../../store/actions/authActions';
 
 import React from 'react'
 
 export const Navbar = () => {
  
-  const totalQuantity = useSelector(state => state.cartReducer.totalCartQuantity)
- 
- 
+    const totalQuantity = useSelector(state => state.cartReducer.totalCartQuantity)
+
+    const dispatch = useDispatch();
+     const loggedIn = useSelector(state => state.userReducer.loggedIn)
+
+     const logout = e => {
+      e.stopPropagation();
+      dispatch(clearCart())
+      dispatch(logoutUser())
+      
+      
+      
+  }
  
  
  
@@ -89,7 +101,16 @@ export const Navbar = () => {
             alt=""
             loading="lazy"
           />
-          <Link className="d-none d-sm-block ms-1 text-white" to="/LoginUser">Login</Link>
+
+
+          {!loggedIn ? <Link className="d-none d-sm-block ms-1 text-white" to="/LoginUser">Login</Link>
+            : (
+              <NavLink onClick={logout} className="nav-link text-white" to="/products">Logout</NavLink>
+
+
+              )
+
+          }
         </span>
       </li>
     </ul>

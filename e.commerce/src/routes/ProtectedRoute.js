@@ -13,12 +13,12 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
       <Route
         {...rest}
         render={ props => {
-          if (loggedIn.isAuthenticated()) {
+          if (loggedIn) {
             return <Component {...props} profile={profile} loggedIn={loggedIn}/>;
           } else {
             return (
               <Redirect
-                to={{ pathname: "/login", state: { from: props.location }}}
+                to={{ pathname: "/", state: { from: props.location }}}
               />
             );
           }

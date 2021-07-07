@@ -1,7 +1,7 @@
-import React from 'react'
+import {useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import {useState} from 'react'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { register, login  } from '../../store/actions/authActions'
 
 
@@ -23,7 +23,9 @@ const Login = () => {
 
 
         const dispatch = useDispatch();
-        let history = useHistory();
+        const history = useHistory();
+        const isLoggedIn = useSelector(state => state.userReducer.loggedIn)
+
 
         const sub = (e) => {
             e.preventDefault()
@@ -35,7 +37,26 @@ const Login = () => {
                
 
             }))
+            
         }
+
+        
+
+        const change = () => {
+            dispatch(register());
+            
+        }
+
+
+        useEffect(() => {
+            if(isLoggedIn) {
+                try {history.push(history.location.state.from.pathname)}
+                catch { history.push('/')}
+
+
+            }
+            
+        }, [isLoggedIn])
 
 
         const handelSub = (e) => {
@@ -102,7 +123,7 @@ return (
                 <label className="form-label" htmlFor="loginPassword">Password</label>
             </div>
                         
-            <button type="submit" className="btn btn-primary btn-block mb-4" >Sign in</button>
+            <button type="submit" className="btn btn-primary btn-block mb-4" onClick={change}>Sign in</button>
                     {/* onClick={()=> history.push("/products")} */}
             
             <div className="text-center">
@@ -145,7 +166,7 @@ return (
 
            
 
-          <button  className="btn btn-primary btn-block mb-3"  >Sign up</button>
+          <button  className="btn btn-primary btn-block mb-3" onClick={change} >Sign up</button>
           {/* onClick={()=> history.push("/products")} */}
             </form>
         </div>

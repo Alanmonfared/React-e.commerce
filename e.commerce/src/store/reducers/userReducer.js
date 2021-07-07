@@ -17,6 +17,18 @@ const userReducer = (state = initState, action) => {
       
       }
 
+      case actiontypes().user.logout:
+        return {
+          
+          profile: {},
+          loggedIn: false
+        
+        }
+
+
+
+
+
 
 
     default:

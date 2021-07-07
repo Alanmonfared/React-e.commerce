@@ -16,6 +16,7 @@ const actiontypes = () => {
         user: {
             register: 'REGISTER_USER',
             login: 'LOGIN_USER',
+            logout: 'LOGOUT_USER'
          
         }
     }

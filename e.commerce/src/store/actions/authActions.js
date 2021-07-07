@@ -22,10 +22,10 @@ export  const login = (_user, history) => {
        .then(res => {
 
         dispatch(setProfile(res.data.user))
-        console.log(res.data.user)
+        console.log(res.data)
         
        })
-    //    history.push('/products')
+    
 
        .catch(err => {
          //   dispatch(err.message);
@@ -59,20 +59,7 @@ export const addOrder = (order,  profile) => {
 }
 
 
-// export const updateProfileUser = _user => {
-//    return async dispatch => {
-//        const res = await axios.get( `http://localhost:9999/api/users/${_user._id}`,
-          
-//            {
-//                headers: {  Authorization: "Bearer " + _user.token}
-                 
-               
-//            }
-//        )
-//        dispatch(setProfile(res.data.user))
-//        console.log(res.data.user);
-//    }
-// }
+
 
 
 export const setProfile = _user => {
@@ -85,7 +72,13 @@ export const setProfile = _user => {
 }
 }
 
+export const logoutUser = () => ({
+   type: actiontypes().user.logout,
+})
 
+export const clearCart = () => ({
+   type:actiontypes().cart.clear,
+})
 
 
 
