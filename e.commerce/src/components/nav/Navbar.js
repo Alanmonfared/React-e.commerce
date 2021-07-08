@@ -65,9 +65,9 @@ export const Navbar = () => {
   
     
    
-    <ul className="navbar-nav flex-row d-none d-md-flex dropdown">
+    <ul className="navbar-nav flex-row  d-md-flex dropdown">
        
-        <li className="nav-item me-3 me-lg-0 dropdown ">
+        <li className="nav-item me-3 me-lg-1 dropdown ">
               <span
                 className="nav-link dropdown-toggle hidden-arrow mx-3"
                 id="navbarDropdown"
@@ -88,7 +88,7 @@ export const Navbar = () => {
       <li className="nav-item me-3 me-lg-1">
         <a className="nav-link  text-white" href="/#">
           <span><i className="fas fa-users "></i></span>
-          <span className="badge rounded-pill badge-notification bg-danger">2</span>
+          <span className="badge rounded-pill badge-notification bg-danger"></span>
         </a>
       </li>
 
@@ -105,7 +105,7 @@ export const Navbar = () => {
 
           {!loggedIn ? <Link className="d-none d-sm-block ms-1 text-white" to="/LoginUser">Login</Link>
             : (
-              <NavLink onClick={logout} className="nav-link text-white" to="/products">Logout</NavLink>
+              <NavLink onClick={logout} className="nav-link hover text-white p-1 btn btn-danger" to="/products">Logout</NavLink>
 
 
               )
