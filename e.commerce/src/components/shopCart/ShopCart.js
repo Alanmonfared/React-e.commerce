@@ -39,7 +39,7 @@ const ShopCart = () => {
                 <div>
                     Total Amount: <span> {totalCartAmount} SEK </span>
                 </div>
-                <small className="text-muted">inkl tax</small>
+               
             </div>
             {/* <button className="btn btn-success" >Checkout</button> */}
             <Link className="btn btn-sm btn-outline-success mb-3 mt-auto hover shadow-1 "  to={'/userAddOrder'}>Checkout</Link>
