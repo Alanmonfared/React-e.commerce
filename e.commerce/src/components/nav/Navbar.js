@@ -103,7 +103,7 @@ export const Navbar = () => {
           />
 
 
-          {!loggedIn ? <Link className="d-none d-sm-block ms-1 text-white" to="/LoginUser">Login</Link>
+          {!loggedIn ? <Link className=" d-sm-block ms-1 text-white" to="/LoginUser">Login</Link>
             : (
               <NavLink onClick={logout} className="nav-link hover text-white p-1 btn btn-danger" to="/products">Logout</NavLink>
 
